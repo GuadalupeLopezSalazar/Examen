@@ -1,0 +1,26 @@
+create table alumnos_tesoem(
+id_alumno number (4) constraint pk_id_alumno primary key,
+Matricula number (15) not null, constraint uq_Matricula unique(Matricula),
+Nombre  nvarchar2 (30) not null,
+Apellido_Paterno nvarchar2   (10) not null,
+Apellido_Materno nvarchar2 (10) not null,
+Carrera nvarchar2 (30) not null,
+Grupo   nvarchar2 (10) not null,
+Semestre  nvarchar2 (10) not null,
+Edificio  nvarchar2 (2) not null,
+Promedio number (6,1) not null
+);
+
+
+create or replace procedure agregar_alumnos 
+(a_id_alumno number , a_Matricula number, a_Nombre nvarchar2, a_Apellido_Paterno nvarchar2, a_Apellido_Materno nvarchar2, a_Carrera nvarchar2,
+ a_Grupo nvarchar2, a_Semestre nvarchar2, a_Edificio nvarchar2 default 'Desconocido', a_Promedio number )
+as
+begin
+insert into alumnos_tesoem values (a_id_alumno,a_Matricula,a_Nombre,  a_Apellido_Paterno, a_Apellido_Materno, a_Carrera,a_Grupo, a_Semestre, a_Edificio,a_Promedio );
+end;
+
+EXECUTE agregar_alumnos;
+EXECUTE agregar_alumnos(1,201020058,'Silvia','Rodriguez','Villa ','Contador Publico','6C21','6to','I','86.7');
+
+SELECT*FROM alumnos_tesoem;
